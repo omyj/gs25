@@ -6,11 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/gs25/assets/css/gs25site.css" rel="stylesheet" type="text/css">
-<link href="/gs25/assets/css/sub.css" rel="stylesheet" type="text/css">
+<link href="/gs25/assets/css/attendance_check.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <title>attendance_check</title>
-<style type="text/css">
+<!-- <style type="text/css">
 	em{font-style: normal;}
 	.title h1 {font-size: 35px; padding-top: 70px;}
 	.event_cal{margin: 20px 0px;}
@@ -31,9 +31,15 @@
 	.td_img{margin: 0px 10px;}
 	.gift_txt{font-family: NanumBarunGothicRegular !important; margin: 8px 10px 0px 10px; text-align: center;font-size: 13px;}
 	.prs_num{margin: 0px 10px; padding-top:5px; color: #00857c; font-size: 16px; text-align: center;}
-</style>
+</style> -->
 </head>
 <body>
+	<form action="/gs25/event/test" method="POST">
+		<input type="text" name="1" id="test1">
+		<input type="text" name="2" id="test2">
+		<button type="submit">전송</button>
+	</form>
+
 	<jsp:include page="/WEB-INF/views/include/subheader.jsp" />
 	<div class="container">
 		<div class="title"><h1>매일매일 출석체크</h1></div>
@@ -43,13 +49,11 @@
 					<div class="select_cal">
 						<select>
 						<option  value="2016" >2016년</option>
-						<option  value="2015" >2015년</option>
-						<option  value="2014" >2014년</option>
-						<option  value="2013" >2013년</option>
+
 						</select>
 						<select>
 							<script language="JavaScript">
-							for (var i = 1; i <= 12; i++) {
+							for (var i = 9; i <= 10; i++) {
 								document.write(
 								"<option value="+i+">"+
 								i+"월</option>"

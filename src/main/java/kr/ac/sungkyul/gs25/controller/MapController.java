@@ -35,7 +35,7 @@ public class MapController {
 		model.addAttribute("map", map);
 		model.addAttribute("map2", map2);
 
-		return "/map/maplist";
+		return "/main_page/market_search";
 	}
 	
 }
