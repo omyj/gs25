@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,35 +12,11 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <title>attendance_check</title>
-<!-- <style type="text/css">
-	em{font-style: normal;}
-	.title h1 {font-size: 35px; padding-top: 70px;}
-	.event_cal{margin: 20px 0px;}
-	.count    {float:left; font-size: 16px; font-family: NanumBarunGothicRegular !important;}
-	.count em {color:orange;}
-	.select_cal {margin-left: 390px;}
-	.select_cal select{font-family: NanumBarunGothicRegular !important; padding: 6px 8px; margin-right: 10px;}
-	.float_clear{clear:both;}
-	table,tbody,tfoot,thead,tr,th,td {border:0 none}
-	table{width:100%;table-layout:fixed; border-collapse:collapse; border-spacing:0; border:0;}
-	.cal_box{margin-bottom: 25px;}
-	.cal_box th{border: 1px solid #dfdfdf; background-color: #fbfbfb;}
-	.cal_box td{border: 1px solid #dfdfdf;}
-	
-	.th_wrap{font-size: 16px; height: 45px; line-height: 45px;}
-	.td_wrap{height: 214px;}
-	.td_date{padding: 10px 0 0 10px; color: #d04001; font-weight: bold; font-size:14px;}
-	.td_img{margin: 0px 10px;}
-	.gift_txt{font-family: NanumBarunGothicRegular !important; margin: 8px 10px 0px 10px; text-align: center;font-size: 13px;}
-	.prs_num{margin: 0px 10px; padding-top:5px; color: #00857c; font-size: 16px; text-align: center;}
-</style> -->
 </head>
 <body>
-	<form action="/gs25/event/test" method="POST">
-		<input type="text" name="1" id="test1">
-		<input type="text" name="2" id="test2">
-		<button type="submit">전송</button>
-	</form>
+	<c:forEach var='vo' items="EventVo" >
+	${vo.image_URL }	
+	</c:forEach>
 
 	<jsp:include page="/WEB-INF/views/include/subheader.jsp" />
 	<div class="container">
@@ -51,15 +29,19 @@
 						<option  value="2016" >2016년</option>
 
 						</select>
-						<select>
-							<script language="JavaScript">
+						<select id = "mSelect" onchange="calForm(this.form)">
+						<option value="9">9월</option>
+						<option value="10">10월</option>
+<!-- 							<script language="JavaScript">
+							
 							for (var i = 9; i <= 10; i++) {
 								document.write(
 								"<option value="+i+">"+
 								i+"월</option>"
 								)
 							}
-							</script>
+							
+							</script> -->
 						</select>
 					
 					</div>
@@ -99,6 +81,7 @@
 					</tr> --%>
 
 					<script language="JavaScript">
+								
 					var y = 2016; // 현재 연도
 					var m = 9 - 1; // 현재 월에서 -1 을 해야합니다.
 					    // 현재 년(y)월(m)의 1일(1)의 요일을 구합니다.
@@ -136,11 +119,13 @@
 											"<div class='td_date'>"+date+"</div>"+
 											"<div class='td_img'>"+
 												"<img src='https://hpsimg.gsretail.com/medias/sys_master/images/images/h7a/h58/8924642541598.png' width='114px' height='77px' id='giftImgNum_25'>"+
-											"</div>"+
+										
+												"</div>"+
 											"<div class='gift_txt' id='giftTitleNum_25'>"+
 												"<em>유어스)<br>뉴공화춘자장(용기)</em>"+
 											"</div>"+
 											"<div class='prs_num'>30명</div>"+
+											
 										"</div>"+
 										"</td>"
 									)
@@ -150,42 +135,9 @@
 							document.write(
 									"</tr>"
 								)
-						}
 						
 						
-/* 					var date = 1;
-						for (i = 0; i < 5; i++) {
-							document.write(
-									"<tr>"
-								)
-							for(j = 0; j < 7; j++){
-								document.write(
-										"<td>"+
-										"<div class='td_wrap' style='background-color: rgb(253, 237, 161);'>"+
-											"<div class='td_date'>"+date+"</div>"+
-											"<div class='td_img'>"+
-												"<img src='https://hpsimg.gsretail.com/medias/sys_master/images/images/h7a/h58/8924642541598.png' width='114px' height='77px' id='giftImgNum_25'>"+
-											"</div>"+
-											"<div class='gift_txt' id='giftTitleNum_25'>"+
-												"<em>유어스)<br>뉴공화춘자장(용기)</em>"+
-											"</div>"+
-											"<div class='prs_num'>30명</div>"+
-										"</div>"+
-										"</td>"
-									)
-									date++;
-							}
-							document.write(
-									"</tr>"
-								)
-						} */
-
-/* 						// Display the month, day, and year. getMonth() returns a 0-based number.
-						var month = dt.getMonth()+1;
-						var day = dt.getDate();
-						var year = dt.getFullYear();
-						document.write(month + '-' + day + '-' + year); */
-						
+					}	
 					</script>
 				</tbody>
 			</table>

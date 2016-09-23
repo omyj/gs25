@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="event">
+	<insert id="insertEvent" parameterType="kr.ac.sungkyul.gs25.vo.EventVo">
+		<![CDATA[
+			INSERT INTO "GS25"."EVENT" (NO, STORE_NO, TITLE, IMAGE_URL, START_DATE, END_DATE, COUNT) VALUES (EVENT_NO_SEQ.nextVal, '0', '뉴공화춘자장(용기)', 'https://hpsimg.gsretail.com/medias/sys_master/images/images/h7a/h58/8924642541598.png', TO_DATE('2016-09-23 06:39:37', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2016-09-30 06:39:57', 'YYYY-MM-DD HH24:MI:SS'), '20')
+
+		]]>
+	</insert>
+	
+	<select id="selectEvent" parameterType="java.lang.String" resultType = "kr.ac.sungkyul.gs25.vo.EventVo">
+		SELECT IMAGE_URL FROM "GS25"."EVENT"
+	</select>
+</mapper>

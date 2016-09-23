@@ -1,41 +1,55 @@
 package kr.ac.sungkyul.gs25.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.ac.sungkyul.gs25.service.TestService;
-import kr.ac.sungkyul.gs25.vo.TestVo;
+import kr.ac.sungkyul.gs25.service.EventService;
+import kr.ac.sungkyul.gs25.vo.EventVo;
 
 @Controller
 @RequestMapping("/event")
 
 public class EventController {
+	@Autowired
+	EventService eventservice;
+	
+	
 	@RequestMapping("/check")
-		public String checkForm(){
+		public String checkForm(Model model){
+//			Event 삽입
+//			eventservice.insertEvent(); 
+			
+//			Event 조회
+			List<EventVo> vo = eventservice.selectEvent();
+			System.out.println(vo);
+			
+			model.addAttribute("EventVo",vo);
 			return "sub_page/event_check";
-		
 	}
 	@RequestMapping("/test")
-	public String join(@ModelAttribute TestVo vo){
-		System.out.println(vo.getTest1());
-		System.out.println(vo.getTest2());
-//		userService.join(vo);
-		return "redirect:/event/check";
+	public String testForm(){
+		return "sub_page/send";
 	}
-//	@RequestMapping(value = "/test", method = RequestMethod.POST)
-//		public String test(
-//				@RequestParam(value = "test1") String test1,
-//				@RequestParam(value = "test1") String test2
-//				){
-//		
-//		TestVo dataTest = TestService.insert(test1, test2);
-//		
-//			return null;
-//		
-//	}
+
+	@RequestMapping(value = "/view")
+		public String test(
+				@RequestParam(value="test1", required=false, defaultValue="") String test, Model model){
+//		int testInt = Integer.parseInt(test);			
+		System.out.println("test: "+ test);
+		
+//		 if(testInt == 1 ){
+//			 testString = "테스트 1";
+//		 }else
+//			 testString = "테스트 2";
+		 model.addAttribute("testString", test);
+			return "sub_page/test_view";
+	}
 }
 
 
